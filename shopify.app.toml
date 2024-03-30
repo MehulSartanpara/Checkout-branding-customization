@@ -1,0 +1,29 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "3d4151c0b846afd4752cc19970fbbcb3"
+name = "CHECKOUT BRANDING APP"
+handle = "checkout-branding-app-2"
+application_url = "https://tractor-frank-atlas-societies.trycloudflare.com"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "mehul-checkout-extensions.myshopify.com"
+include_config_on_deploy = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products"
+
+[auth]
+redirect_urls = [
+  "https://tractor-frank-atlas-societies.trycloudflare.com/auth/callback",
+  "https://tractor-frank-atlas-societies.trycloudflare.com/auth/shopify/callback",
+  "https://tractor-frank-atlas-societies.trycloudflare.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2024-01"
+
+[pos]
+embedded = false
