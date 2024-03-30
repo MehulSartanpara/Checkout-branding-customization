@@ -1,0 +1,120 @@
+# gid://shopify/GenericFile/31164769697951
+# gid://shopify/GenericFile/31164767895711
+
+# SOME RUFFWORKS
+
+query {
+  files (first: 1, query: "Outfit-Regular.woff") {
+    edges {
+      node {
+        ...on GenericFile {
+          id
+        }
+      }
+    }
+  }
+}
+
+{
+  "checkoutProfileId": "gid://shopify/CheckoutProfile/22479007",
+  "checkoutBrandingInput": {
+    "designSystem": {
+      "typography": {
+        "primary": {
+            "customFontGroup": {
+              "base": {
+                "genericFileId": "gid://shopify/GenericFile/31164769697951",
+                "weight": 400
+              },
+              "bold": {
+                "genericFileId": "gid://shopify/GenericFile/31164767895711",
+                "weight": 900
+              },
+              "loadingStrategy": "SWAP"
+            }
+        }
+      }
+    }
+  }
+}
+
+This ONE WORKS
+
+mutation SetShopifyFonts($checkoutProfileId: ID!, $input: CheckoutBrandingInput!) {
+    checkoutBrandingUpsert(checkoutProfileId: $checkoutProfileId, checkoutBrandingInput: $input) {
+      checkoutBranding {
+        designSystem {
+          typography {
+            primary {
+              name
+              base {
+                weight
+              }
+              bold {
+                weight
+              }
+            }
+          }
+        }
+      }
+      userErrors {
+        message
+      }
+    }
+  }
+
+  {
+  "checkoutProfileId": "gid://shopify/CheckoutProfile/22479007",
+  "input": {
+    "designSystem": {
+      "typography": {
+        "primary": {
+          "customFontGroup": {
+              "base": {
+                "genericFileId": "gid://shopify/GenericFile/31164769697951",
+                "weight": 400
+              },
+              "bold": {
+                "genericFileId": "gid://shopify/GenericFile/31164767895711",
+                "weight": 900
+              },
+              "loadingStrategy": "SWAP"
+            }
+        }
+      }
+    }
+  }
+}
+
+
+SOME EXTRA:
+mutation CustomizingControls($checkoutBrandingInput: CheckoutBrandingInput!, $checkoutProfileId: ID!) {
+  checkoutBrandingUpsert(checkoutBrandingInput: $checkoutBrandingInput, checkoutProfileId: $checkoutProfileId) {
+    checkoutBranding {
+      customizations {
+        secondaryButton {
+          typography{
+            font
+          }
+        }
+      }
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}
+
+{
+  "checkoutProfileId": "gid://shopify/CheckoutProfile/30245168",
+  "checkoutBrandingInput": {
+    "customizations": {
+      "secondaryButton": {
+        "typography": {
+            "font": "SECONDARY"
+        }
+      }
+    }
+  }
+}
